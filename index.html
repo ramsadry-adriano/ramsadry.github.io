@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FGVHTXYRNP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-FGVHTXYRNP');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>RAM'S ADRY | Ingénierie, Tech & Multimédia</title>
+  <meta name="description" content="Portfolio officiel de RAM'S ADRY (Adriano). Étudiant en Licence 3 Ingénierie en Physique des Signaux et Systèmes, expert en microcontrôleurs, développement web, traitement du signal et production audiovisuelle & multimédia.">
+  <meta name="keywords" content="RAM'S ADRY, Adriano, Ingénierie, Python, Microcontrôleurs, ESP32, PIC16F877A, Traitement du signal, Audiovisuel, Multimédia, vMix, TV Plus Ambatondrazaka, Antananarivo, ramsadry.com">
+  
+  <link rel="canonical" href="https://ramsadry.github.io/">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://ramsadry.github.io/sitemap.xml">
+
+  <!-- Open Graph / Meta Social -->
+  <meta property="og:title" content="RAM'S ADRY | Portfolio Technique & Multimédia">
+  <meta property="og:description" content="Découvrez mes expertises et réalisations en Tech, Systèmes Embarqués, Traitement du Signal et Création Audiovisuelle.">
+  <meta property="og:url" content="https://ramsadry.github.io/">
+  <meta property="og:image" content="https://ramsadry.github.io/profil/profil.png">
+  <meta property="og:type" content="website">
+  
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --bg-main: #050607;
+      --bg-card: rgba(14, 16, 17, 0.62);
+      --bg-card-hover: rgba(21, 23, 24, 0.78);
+      --accent-blue: #8294a5;
+      --accent-glow: rgba(130, 148, 165, 0.18);
+      --accent-cyan: #e7e9e9;
+      --text-main: #ffffff;
+      --text-dim: #d0d2d3;
+      --gray-light: rgba(255, 255, 255, 0.035);
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --gradient-border: linear-gradient(120deg, #102744, #123b2b 38%, #552c3c 72%, #ffffff);
+      --nav-bg: rgba(5, 8, 14, 0.72);
+      --control-bg: rgba(5, 6, 7, 0.82);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body.light-mode {
+      --bg-main: #f2f5f6;
+      --bg-card: rgba(255, 255, 255, 0.76);
+      --bg-card-hover: rgba(255, 255, 255, 0.94);
+      --accent-blue: #536978;
+      --accent-glow: rgba(55, 81, 94, 0.18);
+      --accent-cyan: #344a53;
+      --text-main: #111719;
+      --text-dim: #3e4a50;
+      --gray-light: rgba(16, 25, 29, 0.04);
+      --glass-border: rgba(16, 25, 29, 0.14);
+      --gradient-border: linear-gradient(120deg, #102744, #123b2b 38%, #883c59 72%, #ffffff);
+      --nav-bg: rgba(242, 245, 246, 0.86);
+      --control-bg: rgba(255, 255, 255, 0.84);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+      transition: var(--transition);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    #theme-toggle {
+      position: fixed;
+      top: 18px;
+      right: 20px;
+      z-index: 1001;
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      color: var(--text-main);
+      background: linear-gradient(var(--bg-main), var(--bg-main)) padding-box, var(--gradient-border) border-box;
+      border: 1px solid transparent;
+      border-radius: 50%;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    #theme-toggle:hover {
+      transform: rotate(12deg);
+      box-shadow: 0 0 18px var(--accent-glow);
+    }
+
+    /* Navigation Glassmorphism */
+    nav {
+      position: sticky;
+      top: 0;
+      background: var(--nav-bg);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      z-index: 1000;
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--accent-blue);
+      transition: var(--transition);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    nav a:hover { color: var(--accent-blue); }
+
+    /* Hero Section avec Fond Flou (PDC Facebook style - 40% intensité) */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 40px 20px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1920&auto=format&fit=crop') no-repeat center center/cover;
+      filter: blur(8px) brightness(0.4);
+      z-index: -1;
+      transform: scale(1.05);
+    }
+
+    .profile-container {
+      position: relative;
+      margin-bottom: 25px;
+    }
+
+    .profile-img {
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid transparent;
+      background: linear-gradient(var(--bg-main), var(--bg-main)) padding-box, var(--gradient-border) border-box;
+      box-shadow: 0 0 30px var(--accent-glow);
+      transition: var(--transition);
+    }
+
+    .profile-container:hover .profile-img {
+      transform: scale(1.03);
+      box-shadow: 0 0 45px var(--accent-glow);
+    }
+
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.2rem, 3.5rem, 4.2rem);
+      font-weight: 900;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+    }
+
+    .hero span {
+      color: var(--text-main);
+      background: none;
+      -webkit-text-fill-color: var(--text-main);
+    }
+
+    .hero .sub-title {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--text-dim);
+      letter-spacing: 2px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      max-width: 700px;
+      margin-bottom: 15px;
+      text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+    }
+
+    .hero .profile-summary {
+      font-family: 'Inter', sans-serif;
+      max-width: 680px;
+      margin: 0 0 24px;
+      color: var(--text-dim);
+      font-size: 0.98rem;
+    }
+
+    .hero .btn-cv-main {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      background: linear-gradient(var(--control-bg), var(--control-bg)) padding-box, var(--gradient-border) border-box;
+      color: var(--text-main);
+      padding: 14px 32px;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      border-radius: 30px;
+      border: 1px solid transparent;
+      transition: var(--transition);
+      box-shadow: 0 6px 20px var(--accent-glow);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .hero .btn-cv-main:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 10px 30px var(--accent-glow);
+    }
+
+    /* Sections General (Nesorina daholo ny tsipika mitsangana) */
+    section { padding: 84px 9%; }
+    
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      margin-bottom: 45px;
+      padding-left: 0;
+      border-left: none;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 30px;
+    }
+
+    /* Cards Styling (Nesorina ny tsipika ivelany) */
+    .skill-card, .media-card {
+      background: var(--bg-card);
+      border-radius: 8px;
+      border: none;
+      backdrop-filter: blur(10px);
+      transition: var(--transition);
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    .skill-card { padding: 0; }
+
+    .skill-card > summary,
+    .media-info > summary {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      list-style: none;
+      cursor: pointer;
+    }
+
+    .skill-card > summary { padding: 22px 24px; }
+    .media-info > summary { padding: 20px; }
+
+    .skill-card > summary::-webkit-details-marker,
+    .media-info > summary::-webkit-details-marker { display: none; }
+
+    .skill-card > summary:focus-visible,
+    .media-info > summary:focus-visible {
+      outline: 2px solid var(--accent-blue);
+      outline-offset: -4px;
+      border-radius: 8px;
+    }
+
+    .skill-card .disclosure-icon,
+    .media-info .disclosure-icon {
+      margin-left: auto;
+      color: var(--text-dim);
+      transition: transform 0.25s ease;
+    }
+
+    .skill-card[open] .disclosure-icon,
+    .media-info[open] .disclosure-icon { transform: rotate(180deg); }
+
+    .skill-card:hover, .media-card:hover {
+      transform: translateY(-7px);
+      background: var(--bg-card-hover);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .skill-card i.card-icon {
+      font-size: 1.7rem;
+      color: var(--accent-blue);
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    /* Fahasamihafana Police eo amin'ny Titre sy Description */
+    .skill-card h3, .media-info h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 0;
+      flex: 1;
+      color: var(--text-main);
+    }
+
+    .skill-details { padding: 0 24px 24px; }
+    .skill-details p, .media-info p { 
+      font-family: 'Inter', sans-serif;
+      color: var(--text-dim); 
+      font-size: 0.92rem; 
+      margin-bottom: 14px; 
+      font-weight: 300;
+    }
+
+    .skill-card ul { 
+      list-style: none; 
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem; 
+      color: var(--text-dim); 
+    }
+
+    .skill-card ul li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .skill-card ul li::before {
+      content: "▹";
+      color: var(--accent-blue);
+    }
+
+    /* Media Containers */
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      background: #000;
+    }
+
+    .video-container video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    .img-container {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      cursor: zoom-in;
+      position: relative;
+    }
+
+    .img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .img-container:hover img {
+      transform: scale(1.08);
+    }
+
+    .media-info { padding: 0; }
+    .media-info p { padding: 0 20px 20px; }
+
+    /* Contact Form (Nesorina ny rohy ambony, natao Fomu fotsiny) */
+    .contact-container {
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .contact-form { 
+      background: var(--bg-card); 
+      padding: 40px; 
+      border-radius: 8px; 
+      border: none;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    input, textarea { 
+      width: 100%; 
+      padding: 14px; 
+      margin-bottom: 18px; 
+      background: var(--gray-light); 
+      border: 1px solid var(--glass-border); 
+      color: var(--text-main); 
+      border-radius: 8px; 
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    input:focus, textarea:focus {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    .btn-submit { 
+      background: linear-gradient(var(--control-bg), var(--control-bg)) padding-box, var(--gradient-border) border-box;
+      color: var(--text-main); 
+      border: 1px solid transparent; 
+      padding: 14px; 
+      width: 100%; 
+      font-family: 'Orbitron', sans-serif;
+      font-weight: bold; 
+      cursor: pointer; 
+      border-radius: 8px; 
+      transition: var(--transition);
+      letter-spacing: 1px;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px var(--accent-glow);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-card);
+      padding: 50px 10% 30px;
+      text-align: center;
+      border-top: 1px solid var(--glass-border);
+    }
+
+    .footer-socials {
+      margin-bottom: 25px;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .footer-socials a {
+      color: var(--text-main);
+      font-size: 1.6rem;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--bg-main);
+      border: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .footer-socials a:hover {
+      color: var(--accent-blue);
+      border-color: var(--accent-blue);
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px var(--accent-glow);
+    }
+
+    .footer-copyright {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      letter-spacing: 1px;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    /* Lightbox Modal */
+    #media-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(10px);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #overlay-content {
+      max-width: 90%;
+      max-height: 85%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #overlay-content img, #overlay-content video {
+      max-width: 100%;
+      max-height: 85vh;
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.8);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 25px;
+      right: 35px;
+      color: white;
+      font-size: 40px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .close-btn:hover { color: var(--accent-blue); }
+
+    @media (max-width: 768px) { 
+      section { padding: 60px 5%; } 
+      nav { gap: 12px; padding: 12px; } 
+      .hero h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <button id="theme-toggle" type="button" aria-label="Activer le thème clair" aria-pressed="false" title="Activer le thème clair">
+    <i class="fas fa-moon" aria-hidden="true"></i>
+  </button>
+
+  <!-- Lightbox Overlay -->
+  <div id="media-overlay">
+    <span class="close-btn">&times;</span>
+    <div id="overlay-content"></div>
+  </div>
+
+  <!-- Header / Hero Section -->
+  <header class="hero" id="home">
+    <div class="profile-container">
+      <img src="profil/profil.png" alt="RAM'S ADRY - Adriano" class="profile-img">
+    </div>
+    <h1>RAM'S <span>ADRY</span></h1>
+    <p class="sub-title">INGÉNIERIE EN PHYSIQUE DES SIGNAUX & CRÉATION MULTIMÉDIA</p>
+    <p class="profile-summary">Étudiant en Licence 3 Ingénierie en Physique des Signaux et Systèmes (LIPSS) à l'Université d'Antananarivo. Alliant la conception technique (ESP32, microcontrôleurs, traitement du signal) à la maîtrise des flux de diffusion et de la création audiovisuelle.</p>
+    <a href="Adriano.pdf" target="_blank" class="btn-cv-main"><i class="fas fa-file-pdf"></i> Mon Curriculum Vitae</a>
+  </header>
+
+  <!-- Navigation (Nesorina ilay CV kely) -->
+  <nav>
+    <a href="#home">Accueil</a>
+    <a href="#skills">Expertises</a>
+    <a href="#multimedia">Créations visuelles</a>
+    <a href="#videos">Démos Vidéo</a>
+    <a href="#galerie">Projets</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Section Expertises -->
+  <section id="skills">
+    <h2 class="section-title"><i class="fas fa-microchip"></i> Mes Domaines d'Expertise</h2>
+    <div class="grid">
+      
+      <details class="skill-card">
+        <summary>
+          <i class="fas fa-wave-square card-icon" aria-hidden="true"></i>
+          <h3>Signaux & Systèmes Embarqués</h3>
+          <i class="fas fa-chevron-down disclosure-icon" aria-hidden="true"></i>
+        </summary>
+        <div class="skill-details">
+          <p>Analyse de signaux, filtrage numérique, prototypage électronique et programmation avancée de microcontrôleurs pour systèmes intelligents.</p>
+          <ul>
+            <li>ESP32, PIC16F877A, Arduino, Wemos D1</li>
+            <li>Filtrage numérique, DFT, Modulations & Radar</li>
+            <li>Conception, routage et prototypage de circuits PCB</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="skill-card">
+        <summary>
+          <i class="fas fa-laptop-code card-icon" aria-hidden="true"></i>
+          <h3>Informatique & Développement Web</h3>
+          <i class="fas fa-chevron-down disclosure-icon" aria-hidden="true"></i>
+        </summary>
+        <div class="skill-details">
+          <p>Développement de logiciels, interfaces web dynamiques et administration de réseaux informatiques embarqués.</p>
+          <ul>
+            <li>C, Python, MATLAB, mikroC PRO for PIC</li>
+            <li>HTML5, CSS3, JavaScript, PHP, MySQL, XAMPP</li>
+            <li>Réseaux TCP/IP, Wi-Fi AP, DNS & Routage</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="skill-card">
+        <summary>
+          <i class="fas fa-photo-video card-icon" aria-hidden="true"></i>
+          <h3>Audiovisuel & Multimédia</h3>
+          <i class="fas fa-chevron-down disclosure-icon" aria-hidden="true"></i>
+        </summary>
+        <div class="skill-details">
+          <p>Gestion de régies de télédiffusion, traitement sonore, montage vidéo et création d'identités visuelles complètes.</p>
+          <ul>
+            <li>Régie et Télédiffusion vMix, NDI, RTSP</li>
+            <li>Montage vidéo et post-production</li>
+            <li>Création audio FL Studio , Adobe Audition </li>
+            <li>Design graphique & Branding Photoshop, Illustrator</li>
+          </ul>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- Section Créations visuelles & Multimédia -->
+  <section id="multimedia" style="background: rgba(255, 255, 255, 0.012);">
+    <h2 class="section-title"><i class="fas fa-palette"></i> Production Audiovisuelle & Multimédia</h2>
+    <div class="grid">
+      
+      <div class="media-card">
+        <div class="img-container">
+          <img src="images/multimédia.png" alt="Design Graphique et Branding Visuel">
+        </div>
+        <details class="media-info">
+          <summary>
+            <h3>Design Graphique & Branding Visuel</h3>
+            <i class="fas fa-chevron-down disclosure-icon" aria-hidden="true"></i>
+          </summary>
+          <p>Conception d'identités visuelles, création de logos vectoriels, charte graphique et visuels promotionnels (Photoshop & Illustrator).</p>
+        </details>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section Vidéos -->
+  <section id="videos">
+    <h2 class="section-title"><i class="fas fa-video"></i> Démonstrations Vidéo</h2>
+    <div class="grid">
+      <div class="media-card">
+        <div class="video-container">
+          <video controls poster="images/poster-video.jpg">
+            <source src="vidéos/ProjetL3.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas le lecteur vidéo.
+          </video>
+        </div>
+        <details class="media-info">
+          <summary>
+            <h3>Démonstration Projet</h3>
+            <i class="fas fa-chevron-down disclosure-icon" aria-hidden="true"></i>
+          </summary>
+          <p>Présentation vidéo détaillée du projet de fin d'études : intégration des systèmes embarqués, capteurs et algorithmes de traitement de signal en temps réel.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Projets & Galerie -->
+  <section id="galerie" style="background: rgba(255, 255, 255, 0.012);">
+    <h2 class="section-title"><i class="fas fa-folder-open"></i> Réalisations & Projets Techniques</h2>
+    <div class="grid">
+      
+      <div class="media-card">
+        <div class="img-container">
+          <img src="images/pcb-elec.jpg" alt="Conception PCB et Électronique">
+        </div>
+        <details class="media-info">
+          <summary>
+            <h3>Conception PCB & Électronique</h3>
+            <i class="fas fa-chevron-down disclosure-icon" aria-hidden="true"></i>
+          </summary>
+          <p>Simulation sur Proteus, routage de circuits et prototypage électronique (ESP32, PIC, Arduino) intégrés avec interfaces web et capteurs.</p>
+        </details>
+      </div>
+
+      <div class="media-card">
+        <div class="img-container">
+          <img src="images/realisation.jpg" alt="Systèmes Automatisés et Embarqués">
+        </div>
+        <details class="media-info">
+          <summary>
+            <h3>Systèmes Embarqués & Automatisation</h3>
+            <i class="fas fa-chevron-down disclosure-icon" aria-hidden="true"></i>
+          </summary>
+          <p>Intégration de moteurs, servomoteurs, capteurs ultrason/IR et télécommunication sans fil pour la réalisation de systèmes intelligents.</p>
+        </details>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section Contact (Nesorina ny rohy ambony, Fomu ihany no tavela) -->
+  <section id="contact">
+    <h2 class="section-title"><i class="fas fa-envelope"></i> Me Contacter</h2>
+    <div class="contact-container">
+      <div class="contact-form">
+        <form action="mailto:ramsadry3@gmail.com" method="POST" enctype="text/plain">
+          <input type="text" name="name" placeholder="Votre Nom complet" required>
+          <input type="email" name="email" placeholder="Votre Adresse Email" required>
+          <textarea name="message" rows="5" placeholder="Décrivez votre projet (Ingénierie, Électronique, Web, Audiovisuel...)" required></textarea>
+          <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> ENVOYER LE MESSAGE</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer avec Icons Mifanaraka Tsara -->
+  <footer>
+    <div class="footer-socials">
+      <a href="mailto:ramsadry3@gmail.com" title="Email Direct"><i class="fas fa-envelope"></i></a>
+      <a href="https://www.linkedin.com/in/adriano-fanambinana-ramiandrisoa" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://github.com/ramsadry-adriano" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://facebook.com/ramadadry" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="Adriano.pdf" target="_blank" title="Consulter le CV"><i class="fas fa-file-pdf"></i></a>
+    </div>
+    
+    <p class="footer-copyright">
+      &copy; 2026 <span>RAM'S ADRY</span> | Ingénierie, Tech & Multimédia
+    </p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = themeToggle.querySelector('i');
+
+    themeToggle.addEventListener('click', () => {
+      const isLightMode = document.body.classList.toggle('light-mode');
+      themeIcon.classList.toggle('fa-moon', !isLightMode);
+      themeIcon.classList.toggle('fa-sun', isLightMode);
+      themeToggle.setAttribute('aria-pressed', String(isLightMode));
+      themeToggle.setAttribute('aria-label', isLightMode ? 'Activer le thème nuit' : 'Activer le thème clair');
+      themeToggle.title = isLightMode ? 'Activer le thème nuit' : 'Activer le thème clair';
+    });
+
+    // Lightbox pour Images & Vidéos
+    const overlay = document.getElementById('media-overlay');
+    const overlayContent = document.getElementById('overlay-content');
+    const closeBtn = document.querySelector('.close-btn');
+
+    document.querySelectorAll('.img-container img').forEach(img => {
+      img.addEventListener('click', () => {
+        overlayContent.innerHTML = '';
+        const clone = img.cloneNode(true);
+        overlayContent.appendChild(clone);
+        overlay.style.display = 'flex';
+      });
+    });
+
+    const closeOverlay = () => { overlay.style.display = 'none'; };
+    closeBtn.addEventListener('click', closeOverlay);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeOverlay();
+    });
+
+  </script>
+</body>
+</html>
